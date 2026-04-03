@@ -1,0 +1,45 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 36 32% 98%;
+  --foreground: 184 18% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 184 18% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 184 18% 12%;
+  --primary: 183 77% 33%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 170 21% 92%;
+  --secondary-foreground: 181 20% 22%;
+  --muted: 36 18% 93%;
+  --muted-foreground: 184 11% 40%;
+  --accent: 18 85% 60%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 74% 52%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 182 15% 84%;
+  --input: 182 15% 84%;
+  --ring: 183 77% 33%;
+}
+
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground font-sans antialiased;
+  background-image:
+    radial-gradient(circle at 12% 12%, rgba(29, 156, 161, 0.08), transparent 45%),
+    radial-gradient(circle at 88% 0%, rgba(245, 142, 73, 0.12), transparent 36%),
+    linear-gradient(180deg, #fffdfa 0%, #f8fbfb 45%, #f6fbfa 100%);
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(18, 150, 149, 0.22);
+}
+
