@@ -24,7 +24,7 @@ class Settings:
 
         cors_raw = os.getenv("BACKEND_CORS_ORIGINS", "http://localhost:3000")
         self.backend_cors_origins: List[str] = [
-            origin.strip() for origin in cors_raw.split(",") if origin.strip()
+            origin.strip().rstrip("/") for origin in cors_raw.split(",") if origin.strip()
         ]
         cors_regex = os.getenv("BACKEND_CORS_ORIGIN_REGEX", "").strip()
         self.backend_cors_origin_regex: str | None = cors_regex or None
