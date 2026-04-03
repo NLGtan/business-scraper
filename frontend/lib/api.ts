@@ -9,10 +9,21 @@ import {
   type SearchResponse,
 } from "@/types/business";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000";
+const apiBaseFromEnv = process.env.NEXT_PUBLIC_API_BASE_URL?.trim().replace(/\/+$/, "");
+const API_BASE = apiBaseFromEnv || (process.env.NODE_ENV === "development" ? "http://localhost:8000" : "");
+
+function getApiBase(): string {
+  if (API_BASE) {
+    return API_BASE;
+  }
+
+  throw new Error(
+    "Missing NEXT_PUBLIC_API_BASE_URL. Set it in Vercel to your Render backend URL.",
+  );
+}
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`, {
+  const response = await fetch(`${getApiBase()}${path}`, {
     ...init,
     headers: {
       "Content-Type": "application/json",
@@ -89,7 +100,7 @@ export async function exportCsv(
   city: string,
   records: (BusinessRecord | Record<string, unknown>)[],
 ) {
-  const response = await fetch(`${API_BASE}/api/export/csv`, {
+  const response = await fetch(`${getApiBase()}/api/export/csv`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

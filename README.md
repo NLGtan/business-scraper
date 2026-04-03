@@ -135,6 +135,17 @@ BACKEND_CORS_ORIGIN_REGEX=https://.*\.vercel\.app
 
 3. Redeploy both services after updating environment variables.
 
+### Troubleshooting `ERR_CONNECTION_REFUSED`
+
+If the frontend shows `net::ERR_CONNECTION_REFUSED`, check:
+
+1. Vercel env `NEXT_PUBLIC_API_BASE_URL` points to your Render URL (for example `https://your-backend-name.onrender.com`).
+2. Render backend service is live and responds on `/health`.
+3. Render env `BACKEND_CORS_ORIGINS` contains your exact Vercel domain without trailing slash (for example `https://your-app.vercel.app`).
+4. Both services were redeployed after env changes.
+
+In production, this app now throws a clear error when `NEXT_PUBLIC_API_BASE_URL` is missing instead of silently defaulting to localhost.
+
 ## API Endpoints
 
 - `GET /api/presets`
