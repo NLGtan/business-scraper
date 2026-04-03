@@ -26,6 +26,8 @@ class Settings:
         self.backend_cors_origins: List[str] = [
             origin.strip() for origin in cors_raw.split(",") if origin.strip()
         ]
+        cors_regex = os.getenv("BACKEND_CORS_ORIGIN_REGEX", "").strip()
+        self.backend_cors_origin_regex: str | None = cors_regex or None
 
         self.openai_api_key = os.getenv("OPENAI_API_KEY", "")
         self.openai_model = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")

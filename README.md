@@ -115,6 +115,26 @@ npm run dev
 
 - `http://localhost:3000`
 
+## Render + Vercel Deployment
+
+To connect a Vercel frontend to a Render backend:
+
+1. Set Vercel frontend environment variable:
+
+```env
+NEXT_PUBLIC_API_BASE_URL=https://your-backend-name.onrender.com
+```
+
+2. Set Render backend environment variables:
+
+```env
+BACKEND_CORS_ORIGINS=https://your-app.vercel.app
+# Optional: allow all Vercel preview deployments
+BACKEND_CORS_ORIGIN_REGEX=https://.*\.vercel\.app
+```
+
+3. Redeploy both services after updating environment variables.
+
 ## API Endpoints
 
 - `GET /api/presets`
